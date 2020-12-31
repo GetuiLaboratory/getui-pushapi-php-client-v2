@@ -1,0 +1,16 @@
+{
+  "name": "getuilaboratory/getui-pushapi-php-client-v2",
+  "description": "getui php client V2",
+  "keywords": ["getui", "getuilaboratory", "getui-pushapi-php-client","getui-pushapi-php-client-v2", "pushapi"],
+  "homepage": "https://www.getui.com/cn/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "getui",
+      "homepage": "https://www.getui.com/cn"
+    }
+  ],
+  "autoload": {
+    "classmap": [""]
+  }
+}
