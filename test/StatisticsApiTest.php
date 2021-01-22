@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__) . '/' . '../GtClient.php');
+require_once(dirname(__FILE__) . '/' . '../GTClient.php');
 
 define("APPKEY","*");
 define("APPID","*");
@@ -10,7 +10,7 @@ define("CID2","*");
 define("CID3","*");
 
 $taskId = null;
-$api = new GtClient(URL,APPKEY,APPID,MS);
+$api = new GTClient(URL,APPKEY,APPID,MS);
 
 queryPushResultByTaskIds();
 queryPushResultByGroupName();

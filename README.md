@@ -27,12 +27,12 @@
 ```php
 function pushToSingleByCid(){
 	//创建API，APPID等配置参考 环境要求 进行获取
-    $api = new GtClient("消息推送服务地址","APPKEY", "APPID","MASTERSECRET");
+    $api = new GTClient("https://restapi.getui.com","APPKEY", "APPID","MASTERSECRET");
     //设置推送参数
     $push = new GTPushRequest();
     $push->setRequestId("请求唯一标识号");
     $message = new GTPushMessage();
-    $notify = new GtNotification();
+    $notify = new GTNotification();
     $notify->setTitle("设置通知标题");
     $notify->setBody("设置通知内容");
     //点击通知后续动作，目前支持以下后续动作:
@@ -50,7 +50,7 @@ function pushToSingleByCid(){
 ```php
 function queryPushResultByDate(){
     //创建API，APPID等配置参考 环境要求 进行获取
-    $api = new GtClient("消息推送服务地址","APPKEY", "APPID","MASTERSECRET");
+    $api = new GTClient("https://restapi.getui.com","APPKEY", "APPID","MASTERSECRET");
     //处理返回结果
     $result = $api->statisticsApi()->queryPushResultByDate("年-月-日");
 }
@@ -61,7 +61,7 @@ function queryPushResultByDate(){
 ```php
 function queryUserStatus(){
     //创建API，APPID等配置参考 环境要求 进行获取
-    $api = new GtClient("消息推送服务地址","APPKEY", "APPID","MASTERSECRET");
+    $api = new GTClient("https://restapi.getui.com","APPKEY", "APPID","MASTERSECRET");
     $array = array(CID1);
     //处理返回结果
     $result = $api->userApi()->queryUserStatus($array);
@@ -86,40 +86,40 @@ function queryUserStatus(){
 
 | API类别      |      功能       | 调用的API名称                                              |
 |-----------|-----------------|-----------------------------------------------------------|
-| 鉴权API | [鉴权](https://docs.getui.com/getui/server/rest_v2/token/#0)              | 初始化GtClient会自动鉴权                                  |
-| 鉴权API | [删除鉴权](https://docs.getui.com/getui/server/rest_v2/token/#1)           | GtUserApi.closeAuth                                 |
-| 推送API | [cid单推](https://docs.getui.com/getui/server/rest_v2/push/#1)            | GtUserApi.pushToSingleByCid                     |
-| 推送API | [别名单推](https://docs.getui.com/getui/server/rest_v2/push/#2)            | GtUserApi.pushToSingleByAlias                   |
-| 推送API | [cid批量单推](https://docs.getui.com/getui/server/rest_v2/push/#3)         | GtUserApi.pushBatchByCid                        |
-| 推送API | [别名批量单推](https://docs.getui.com/getui/server/rest_v2/push/#4)         | GtUserApi.pushBatchByAlias                      |
-| 推送API | [tolist创建消息](https://docs.getui.com/getui/server/rest_v2/push/#5)      | GtUserApi.createListMsg                             |
-| 推送API | [cid批量推](https://docs.getui.com/getui/server/rest_v2/push/#6)           | GtUserApi.pushListByCid                         |                  
-| 推送API | [别名批量推](https://docs.getui.com/getui/server/rest_v2/push/#7)           | GtUserApi.pushListByAlias                       |                    
-| 推送API | [群推](https://docs.getui.com/getui/server/rest_v2/push/#8)                | GtUserApi.pushAll                               |                                
-| 推送API | [条件筛选用户推送](https://docs.getui.com/getui/server/rest_v2/push/#9)      | GtUserApi.pushByTag                             |                               
-| 推送API | [标签快速推送](https://docs.getui.com/getui/server/rest_v2/push/#10)        | GtUserApi.pushByFastCustomTag                    |                                
-| 推送API | [停止任务](https://docs.getui.com/getui/server/rest_v2/push/#11)            | GtUserApi.stopPush                              |            
-| 推送API | [查询定时任务](https://docs.getui.com/getui/server/rest_v2/push/#12)        | GtUserApi.queryScheduleTask                      |     
-| 推送API | [删除定时任务](https://docs.getui.com/getui/server/rest_v2/push/#13)        | GtUserApi.deleteScheduleTask                     |
-| 统计API | [获取推送结果](https://docs.getui.com/getui/server/rest_v2/report/#1)       | GtStatisticsApi.queryPushResultByTaskIds          |                                    
-| 统计API | [任务组名查报表](https://docs.getui.com/getui/server/rest_v2/report/#2)      | GtStatisticsApi.queryPushResultByGroupName        |
-| 统计API | [单日推送数据](https://docs.getui.com/getui/server/rest_v2/report/#3)       | GtStatisticsApi.queryPushResultByDate             |
-| 统计API | [单日用户数据接口](https://docs.getui.com/getui/server/rest_v2/report/#4)    | GtStatisticsApi.queryUserDataByDate               |
-| 统计API | [24小时在线用户数](https://docs.getui.com/getui/server/rest_v2/report/#5)    | GtStatisticsApi.queryOnlineUserData              |
-| 用户API | [绑定别名](https://docs.getui.com/getui/server/rest_v2/user/#1)             | GtUserApi.bindAlias                             |
-| 用户API | [根据cid查询别名](https://docs.getui.com/getui/server/rest_v2/user/#2)       | GtUserApi.queryAliasByCid                       |
-| 用户API | [根据别名查询cid](https://docs.getui.com/getui/server/rest_v2/user/#3)       | GtUserApi.queryCidByAlias                       |
-| 用户API | [批量解绑别名](https://docs.getui.com/getui/server/rest_v2/user/#4)          | GtUserApi.unbindAlias                      |
-| 用户API | [解绑所有别名](https://docs.getui.com/getui/server/rest_v2/user/#5)          | GtUserApi.unbindAllAlias                        |
-| 用户API | [一个用户绑定一批标签](https://docs.getui.com/getui/server/rest_v2/user/#6)    | GtUserApi.setTagForCid                         |
-| 用户API | [一批用户绑定一个标签](https://docs.getui.com/getui/server/rest_v2/user/#7)    | GtUserApi.batchModifyTagForBatchCid                         |
-| 用户API | [一批用户解绑一个标签](https://docs.getui.com/getui/server/rest_v2/user/#8)    | GtUserApi.unbindTag                       |
-| 用户API | [查询标签](https://docs.getui.com/getui/server/rest_v2/user/#9)              | GtUserApi.queryUserTag                        |
-| 用户API | [添加黑名单用户](https://docs.getui.com/getui/server/rest_v2/user/#10)        | GtUserApi.addBlackUser                         |
-| 用户API | [移除黑名单用户](https://docs.getui.com/getui/server/rest_v2/user/#11)        | GtUserApi.removeBlackUser                      |
-| 用户API | [查询用户状态](https://docs.getui.com/getui/server/rest_v2/user/#12)          | GtUserApi.queryUserStatus                     |
-| 用户API | [设置角标(仅支持IOS)](https://docs.getui.com/getui/server/rest_v2/user/#13)   | GtUserApi.setBadge                             |
-| 用户API | [查询用户总量](https://docs.getui.com/getui/server/rest_v2/user/#14)          | GtUserApi.queryUserCount                            |
+| 鉴权API | [鉴权](https://docs.getui.com/getui/server/rest_v2/token/#0)              | 初始化GTClient会自动鉴权                                  |
+| 鉴权API | [删除鉴权](https://docs.getui.com/getui/server/rest_v2/token/#1)           | GTUserApi.closeAuth                                 |
+| 推送API | [cid单推](https://docs.getui.com/getui/server/rest_v2/push/#1)            | GTUserApi.pushToSingleByCid                     |
+| 推送API | [别名单推](https://docs.getui.com/getui/server/rest_v2/push/#2)            | GTUserApi.pushToSingleByAlias                   |
+| 推送API | [cid批量单推](https://docs.getui.com/getui/server/rest_v2/push/#3)         | GTUserApi.pushBatchByCid                        |
+| 推送API | [别名批量单推](https://docs.getui.com/getui/server/rest_v2/push/#4)         | GTUserApi.pushBatchByAlias                      |
+| 推送API | [tolist创建消息](https://docs.getui.com/getui/server/rest_v2/push/#5)      | GTUserApi.createListMsg                             |
+| 推送API | [cid批量推](https://docs.getui.com/getui/server/rest_v2/push/#6)           | GTUserApi.pushListByCid                         |                  
+| 推送API | [别名批量推](https://docs.getui.com/getui/server/rest_v2/push/#7)           | GTUserApi.pushListByAlias                       |                    
+| 推送API | [群推](https://docs.getui.com/getui/server/rest_v2/push/#8)                | GTUserApi.pushAll                               |                                
+| 推送API | [条件筛选用户推送](https://docs.getui.com/getui/server/rest_v2/push/#9)      | GTUserApi.pushByTag                             |                               
+| 推送API | [标签快速推送](https://docs.getui.com/getui/server/rest_v2/push/#10)        | GTUserApi.pushByFastCustomTag                    |                                
+| 推送API | [停止任务](https://docs.getui.com/getui/server/rest_v2/push/#11)            | GTUserApi.stopPush                              |            
+| 推送API | [查询定时任务](https://docs.getui.com/getui/server/rest_v2/push/#12)        | GTUserApi.queryScheduleTask                      |     
+| 推送API | [删除定时任务](https://docs.getui.com/getui/server/rest_v2/push/#13)        | GTUserApi.deleteScheduleTask                     |
+| 统计API | [获取推送结果](https://docs.getui.com/getui/server/rest_v2/report/#1)       | GTStatisticsApi.queryPushResultByTaskIds          |                                    
+| 统计API | [任务组名查报表](https://docs.getui.com/getui/server/rest_v2/report/#2)      | GTStatisticsApi.queryPushResultByGroupName        |
+| 统计API | [单日推送数据](https://docs.getui.com/getui/server/rest_v2/report/#3)       | GTStatisticsApi.queryPushResultByDate             |
+| 统计API | [单日用户数据接口](https://docs.getui.com/getui/server/rest_v2/report/#4)    | GTStatisticsApi.queryUserDataByDate               |
+| 统计API | [24小时在线用户数](https://docs.getui.com/getui/server/rest_v2/report/#5)    | GTStatisticsApi.queryOnlineUserData              |
+| 用户API | [绑定别名](https://docs.getui.com/getui/server/rest_v2/user/#1)             | GTUserApi.bindAlias                             |
+| 用户API | [根据cid查询别名](https://docs.getui.com/getui/server/rest_v2/user/#2)       | GTUserApi.queryAliasByCid                       |
+| 用户API | [根据别名查询cid](https://docs.getui.com/getui/server/rest_v2/user/#3)       | GTUserApi.queryCidByAlias                       |
+| 用户API | [批量解绑别名](https://docs.getui.com/getui/server/rest_v2/user/#4)          | GTUserApi.unbindAlias                      |
+| 用户API | [解绑所有别名](https://docs.getui.com/getui/server/rest_v2/user/#5)          | GTUserApi.unbindAllAlias                        |
+| 用户API | [一个用户绑定一批标签](https://docs.getui.com/getui/server/rest_v2/user/#6)    | GTUserApi.setTagForCid                         |
+| 用户API | [一批用户绑定一个标签](https://docs.getui.com/getui/server/rest_v2/user/#7)    | GTUserApi.batchModifyTagForBatchCid                         |
+| 用户API | [一批用户解绑一个标签](https://docs.getui.com/getui/server/rest_v2/user/#8)    | GTUserApi.unbindTag                       |
+| 用户API | [查询标签](https://docs.getui.com/getui/server/rest_v2/user/#9)              | GTUserApi.queryUserTag                        |
+| 用户API | [添加黑名单用户](https://docs.getui.com/getui/server/rest_v2/user/#10)        | GTUserApi.addBlackUser                         |
+| 用户API | [移除黑名单用户](https://docs.getui.com/getui/server/rest_v2/user/#11)        | GTUserApi.removeBlackUser                      |
+| 用户API | [查询用户状态](https://docs.getui.com/getui/server/rest_v2/user/#12)          | GTUserApi.queryUserStatus                     |
+| 用户API | [设置角标(仅支持IOS)](https://docs.getui.com/getui/server/rest_v2/user/#13)   | GTUserApi.setBadge                             |
+| 用户API | [查询用户总量](https://docs.getui.com/getui/server/rest_v2/user/#14)          | GTUserApi.queryUserCount                            |
 
 > 注：更多API持续更新中，敬请期待。
 

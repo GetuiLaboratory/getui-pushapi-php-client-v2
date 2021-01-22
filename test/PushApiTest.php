@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__) . '/' . '../GtClient.php');
+require_once(dirname(__FILE__) . '/' . '../GTClient.php');
 
 define("APPKEY","*");
 define("APPID","*");
@@ -12,7 +12,7 @@ define("CID3","*");
 
 $token = null;
 $taskId = null;
-$api = new GtClient(URL,APPKEY,APPID,MS);
+$api = new GTClient(URL,APPKEY,APPID,MS);
 
 pushToSingleByCid();
 //pushToSingleByAlias();
@@ -45,7 +45,7 @@ function pushToSingleByAlias(){
 }
 
 function pushBatchByCid(){
-    $batch = new GtPushBatchRequest();
+    $batch = new GTPushBatchRequest();
     $push = getParam();
     $push->setCid(CID3);
 //    $push1 = getParam();
@@ -59,7 +59,7 @@ function pushBatchByCid(){
 }
 
 function pushBatchByAlias(){
-    $batch = new GtPushBatchRequest();
+    $batch = new GTPushBatchRequest();
     $push = getParam();
     $push->setAlias("cccc");
 
@@ -78,7 +78,7 @@ function createListMsg(){
 }
 
 function pushListByCid(){
-    $user = new GtAudienceRequest();
+    $user = new GTAudienceRequest();
     $user->setIsAsync(true);
     $user->setTaskid("taskid");
     $user->setCidList(array(CID3));
@@ -87,7 +87,7 @@ function pushListByCid(){
 }
 
 function pushListByAlias(){
-    $user = new GtAudienceRequest();
+    $user = new GTAudienceRequest();
     $user->setIsAsync(true);
     $user->setTaskid("taskid");
     $user->setAliasList(array("cccc"));
@@ -104,7 +104,7 @@ function pushAll(){
 
 function pushByTag(){
     $push = getParam();
-    $tag1 = new GtCondition();
+    $tag1 = new GTCondition();
     $tag1->setOptType("and");
     $tag1->setKey("phone_type");
     $tag1->setValues(array("IOS"));
@@ -153,7 +153,7 @@ function getParam(){
     //设置PushMessage，
     $message = new GTPushMessage();
     //通知
-    $notify = new GtNotification();
+    $notify = new GTNotification();
     $notify->setTitle("notdifyddd");
     $notify->setBody("notify bdoddy");
     $notify->setBigText("bigTdext");
@@ -184,7 +184,7 @@ function getParam(){
     $push->setPushMessage($message);
     $message->setDuration("1590547347000-1590633747000");
     //厂商推送消息参数
-    $pushChannel = new GtPushChannel();
+    $pushChannel = new GTPushChannel();
     //ios
     $ios = new GTIos();
     $ios->setType("notify");
@@ -192,13 +192,13 @@ function getParam(){
     $ios->setPayload("ios_payload");
     $ios->setApnsCollapseId("apnsCollapseId");
     //aps设置
-    $aps = new GtAps();
+    $aps = new GTAps();
     $aps->setContentAvailable(0);
     $aps->setSound("com.gexin.ios.silenc");
     $aps->setCategory("category");
     $aps->setThreadId("threadId");
 
-    $alert = new GtAlert();
+    $alert = new GTAlert();
     $alert->setTitle("alert title");
     $alert->setBody("alert body");
     $alert->setActionLocKey("ActionLocKey");
@@ -213,11 +213,11 @@ function getParam(){
     $aps->setAlert($alert);
     $ios->setAps($aps);
 
-    $multimedia = new GtMultimedia();
+    $multimedia = new GTMultimedia();
     $multimedia->setUrl("url");
     $multimedia->setType(1);
     $multimedia->setOnlyWifi(false);
-    $multimedia2 = new GtMultimedia();
+    $multimedia2 = new GTMultimedia();
     $multimedia2->setUrl("url2");
     $multimedia2->setType(2);
     $multimedia2->setOnlyWifi(true);
@@ -225,13 +225,13 @@ function getParam(){
     $ios->addMultimedia($multimedia2);
     $pushChannel->setIos($ios);
     //安卓
-    $android = new GtAndroid();
-    $ups = new GtUps();
+    $android = new GTAndroid();
+    $ups = new GTUps();
 //    $ups->setTransmission("ups Transmission");
-    $thirdNotification = new GtThirdNotification();
+    $thirdNotification = new GTThirdNotification();
     $thirdNotification->setTitle("title".micro_time());
     $thirdNotification->setBody("body".micro_time());
-    $thirdNotification->setClickType(GtThirdNotification::CLICK_TYPE_URL);
+    $thirdNotification->setClickType(GTThirdNotification::CLICK_TYPE_URL);
     $thirdNotification->setIntent("intent:#Intent;component=你的包名/你要打开的 activity 全路径;S.parm1=value1;S.parm2=value2;end");
     $thirdNotification->setUrl("http://docs.getui.com/getui/server/rest_v2/push/");
     $thirdNotification->setPayload("payload");
