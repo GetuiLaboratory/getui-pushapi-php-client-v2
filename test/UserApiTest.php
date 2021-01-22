@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__) . '/' . '../GtClient.php');
+require_once(dirname(__FILE__) . '/' . '../GTClient.php');
 
 define("APPKEY","*");
 define("APPID","*");
@@ -11,7 +11,7 @@ define("CID3","*");
 
 $token = null;
 $taskId = null;
-$api = new GtClient(URL,APPKEY,APPID,MS);
+$api = new GTClient(URL,APPKEY,APPID,MS);
 
 //closeAuth();
 //别名
@@ -40,11 +40,11 @@ function closeAuth(){
 
 //用户
 function bindAlias1(){
-    $cidAliasListRequest = new GtAliasRequest();
-//    $als1 = new GtCidAlias();
+    $cidAliasListRequest = new GTAliasRequest();
+//    $als1 = new GTCidAlias();
 //    $als1->setCid(CID1);
 //    $als1->setAlias("aaa");
-    $als2 = new GtCidAlias();
+    $als2 = new GTCidAlias();
     $als2->setCid(CID3);
     $als2->setAlias("cccc");
 //    $cidAliasListRequest->addDataList($als1);
@@ -54,11 +54,11 @@ function bindAlias1(){
 }
 
 function bindAlias2(){
-    $cidAliasListRequest = new GtAliasRequest();
-    $als1 = new GtCidAlias();
+    $cidAliasListRequest = new GTAliasRequest();
+    $als1 = new GTCidAlias();
     $als1->setCid(CID1);
     $als1->setAlias("tag1");
-    $als2 = new GtCidAlias();
+    $als2 = new GTCidAlias();
     $als2->setCid(CID3);
     $als2->setAlias("tag3");
     $arr = array($als1,$als2);
@@ -78,8 +78,8 @@ function queryCidByAlias(){
 }
 
 function unBindAlias(){
-    $cidAliasListRequest = new GtAliasRequest();
-    $als1 = new GtCidAlias();
+    $cidAliasListRequest = new GTAliasRequest();
+    $als1 = new GTCidAlias();
     $als1->setCid(CID1);
     $als1->setAlias("aaa");
     $cidAliasListRequest->addDataList($als1);
@@ -93,7 +93,7 @@ function unBindAllAlias(){
 }
 
 function setTagForCid(){
-    $tags = new GtTagSetRequest();
+    $tags = new GTTagSetRequest();
     $tags->setCid(CID1);
     $array = array("tag3","tag2","tag4");
     $tags->setCustomTag($array);
@@ -102,7 +102,7 @@ function setTagForCid(){
 }
 
 function batchModifyTagForBatchCid(){
-    $tags = new GtTagBatchSetRequest();
+    $tags = new GTTagBatchSetRequest();
     $tags->setCustomTag("tagb");
     $array = array(CID1,CID2);
     $tags->setCid($array);
@@ -111,7 +111,7 @@ function batchModifyTagForBatchCid(){
 }
 
 function unbindTag(){
-    $tags = new GtTagBatchSetRequest();
+    $tags = new GTTagBatchSetRequest();
     $tags->setCustomTag("tag3");
     $array = array(CID1);
     $tags->setCid($array);
@@ -145,7 +145,7 @@ function removeBlackUser(){
 }
 
 function setBadge(){
-    $param = new GtBadgeSetRequest();
+    $param = new GTBadgeSetRequest();
     $param->setBadge(10);
     $array = array(CID1);
     $param->setCids($array);
@@ -154,12 +154,12 @@ function setBadge(){
 }
 
 function queryUserCount(){
-    $param = new GtUserQueryRequest();
-    $condition = new GtCondition();
+    $param = new GTUserQueryRequest();
+    $condition = new GTCondition();
     $condition->setKey("custom_tag");
     $condition->setValues(array("tagb"));
     $condition->setOptType("and");
-    $condition1 = new GtCondition();
+    $condition1 = new GTCondition();
     $condition1->setKey("custom_tag");
     $condition1->setValues(array("tag2"));
     $condition1->setOptType("and");
