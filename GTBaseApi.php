@@ -34,7 +34,7 @@ class GTBaseApi
         if ($rep != null) {
             if ('10001' == $rep['code']) {
                 try {
-                    if ($this->gtClient->auth()) {
+                    if ($this->gtClient->getAuthToken()) {
                         $rep = GTHttpManager::httpRequest($this->getUrl($api), $params, $this->buildHead(), $gzip, $method);
                     }
                 } catch (GTException $e) {
