@@ -79,7 +79,7 @@ class GTHttpManager
         return $result;
     }
 
-    public static function httpRequest($url, $params,$headers, $gzip = false, $method)
+    public static function httpRequest($url, $params,$headers, $gzip, $method)
     {
         $data = json_encode($params);
         $result = null;
