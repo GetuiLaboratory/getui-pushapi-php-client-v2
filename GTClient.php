@@ -90,7 +90,9 @@ class GTClient
         }
         //鉴权
         try {
-            $this->auth();
+            if (empty($this->authToken)) {
+                $this->auth();
+            }
         } catch (Exception $e) {
             echo  $e->getMessage();
         }
